@@ -17,8 +17,13 @@
         "monochromeImage": "./assets/android-icon-monochrome.png"
       }
     },
+    "scheme": "snack-dyali",
     "web": {
-      "favicon": "./assets/favicon.png"
-    }
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-router"
+    ]
   }
 }

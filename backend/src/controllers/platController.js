@@ -66,13 +66,13 @@ exports.updatePlat = async (req, res) => {
 
 exports.deletePlat = async (req, res) => {
   try {
-    const plat = await Plat.findByPk(req.params.id);
-    if (!plat) {
-      return res.status(404).json({ message: "Plat introuvable." });
+    const { id } = req.params;
+    const deleted = await Plat.destroy({ where: { id } });
+    if (deleted) {
+      return res.status(200).json({ message: 'Plat supprimé avec succès' });
     }
-    await plat.destroy();
-    return res.status(204).send(); 
+    return res.status(404).json({ message: 'Plat non trouvé' });
   } catch (error) {
-    return res.status(500).json({ message: "Erreur lors de la suppression du plat." });
+    return res.status(500).json({ message: error.message });
   }
 };
